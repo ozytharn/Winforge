@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>WinForge.ActionBroker.V2</AssemblyName>
+    <RootNamespace>WinForge.ActionBroker.V2</RootNamespace>
+  </PropertyGroup>
+
+</Project>

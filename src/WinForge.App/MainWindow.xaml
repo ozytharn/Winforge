@@ -1,0 +1,1007 @@
+﻿<Window x:Class="WinForge.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="WinForge - PC Passport"
+        Width="1180"
+        Height="760"
+        MinWidth="860"
+        MinHeight="560"
+        Background="#F4F6F8"
+        Loaded="OnLoaded">
+    <TabControl Background="#F4F6F8" SelectedIndex="{Binding SelectedTabIndex}">
+      <TabItem Header="Overview">
+       <Grid Margin="28">
+        <Grid.RowDefinitions>
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="*" />
+         <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" Margin="0,0,0,18">
+         <StackPanel>
+          <TextBlock FontSize="26" FontWeight="SemiBold" Foreground="#172B4D" Text="WinForge Overview" />
+          <TextBlock Margin="0,4,0,0" FontSize="13" Foreground="#53657D"
+                     Text="A local summary of collected system intelligence. Values are not inferred when data is unavailable." />
+         </StackPanel>
+         <TextBlock DockPanel.Dock="Right" VerticalAlignment="Center" Foreground="#68788D"
+                    Text="Read-only intelligence" />
+        </DockPanel>
+        <Grid Grid.Row="1">
+         <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="*" />
+         </Grid.ColumnDefinitions>
+         <Grid.RowDefinitions>
+          <RowDefinition Height="*" />
+          <RowDefinition Height="*" />
+          <RowDefinition Height="*" />
+         </Grid.RowDefinitions>
+         <Border Grid.Row="0" Grid.Column="0" Margin="0,0,8,8" Padding="16" Background="White"
+                 BorderBrush="#E1E7EF" BorderThickness="1" CornerRadius="8">
+          <DockPanel>
+           <Button DockPanel.Dock="Right" Margin="12,0,0,0" Padding="12,6"
+                   VerticalAlignment="Top" Command="{Binding NavigatePassportCommand}" Content="Open Passport" />
+           <StackPanel>
+            <TextBlock FontSize="11" FontWeight="SemiBold" Foreground="#68788D" Text="PC PASSPORT" />
+            <TextBlock Margin="0,8,0,0" Foreground="#172B4D" TextWrapping="Wrap" Text="{Binding PassportSummary}" />
+           </StackPanel>
+          </DockPanel>
+         </Border>
+         <Border Grid.Row="0" Grid.Column="1" Margin="8,0,0,8" Padding="16" Background="White"
+                 BorderBrush="#E1E7EF" BorderThickness="1" CornerRadius="8">
+          <DockPanel>
+           <Button DockPanel.Dock="Right" Margin="12,0,0,0" Padding="12,6"
+                   VerticalAlignment="Top" Command="{Binding NavigateDigitalTwinCommand}" Content="Open Digital Twin" />
+           <StackPanel>
+            <TextBlock FontSize="11" FontWeight="SemiBold" Foreground="#68788D" Text="DIGITAL TWIN" />
+            <TextBlock Margin="0,8,0,0" Foreground="#172B4D" TextWrapping="Wrap" Text="{Binding DigitalTwinSummary}" />
+           </StackPanel>
+          </DockPanel>
+         </Border>
+         <Border Grid.Row="1" Grid.Column="0" Margin="0,8,8,8" Padding="16" Background="White"
+                 BorderBrush="#E1E7EF" BorderThickness="1" CornerRadius="8">
+          <DockPanel>
+           <Button DockPanel.Dock="Right" Margin="12,0,0,0" Padding="12,6"
+                   VerticalAlignment="Top" Command="{Binding NavigateRecoveryCommand}" Content="Open Recovery" />
+           <StackPanel>
+            <TextBlock FontSize="11" FontWeight="SemiBold" Foreground="#68788D" Text="RECOVERY READINESS" />
+            <TextBlock Margin="0,8,0,0" Foreground="#172B4D" TextWrapping="Wrap" Text="{Binding RecoverySummary}" />
+           </StackPanel>
+          </DockPanel>
+         </Border>
+         <Border Grid.Row="1" Grid.Column="1" Margin="8,8,0,8" Padding="16" Background="White"
+                 BorderBrush="#E1E7EF" BorderThickness="1" CornerRadius="8">
+          <DockPanel>
+           <Button DockPanel.Dock="Right" Margin="12,0,0,0" Padding="12,6"
+                   VerticalAlignment="Top" Command="{Binding NavigateBackupsCommand}" Content="Open Backups" />
+           <StackPanel>
+            <TextBlock FontSize="11" FontWeight="SemiBold" Foreground="#68788D" Text="BACKUP INTELLIGENCE" />
+            <TextBlock Margin="0,8,0,0" Foreground="#172B4D" TextWrapping="Wrap" Text="{Binding BackupSummary}" />
+           </StackPanel>
+          </DockPanel>
+         </Border>
+         <Border Grid.Row="2" Grid.Column="0" Margin="0,8,8,0" Padding="16" Background="White"
+                 BorderBrush="#E1E7EF" BorderThickness="1" CornerRadius="8">
+          <DockPanel>
+           <Button DockPanel.Dock="Right" Margin="12,0,0,0" Padding="12,6"
+                   VerticalAlignment="Top" Command="{Binding NavigateGuardianCommand}" Content="Open Guardian" />
+           <StackPanel>
+            <TextBlock FontSize="11" FontWeight="SemiBold" Foreground="#68788D" Text="GUARDIAN OBSERVATIONS" />
+            <TextBlock Margin="0,8,0,0" Foreground="#172B4D" TextWrapping="Wrap" Text="{Binding GuardianSummary}" />
+           </StackPanel>
+          </DockPanel>
+         </Border>
+         <Border Grid.Row="2" Grid.Column="1" Margin="8,8,0,0" Padding="16" Background="White"
+                 BorderBrush="#E1E7EF" BorderThickness="1" CornerRadius="8">
+          <StackPanel>
+           <TextBlock FontSize="11" FontWeight="SemiBold" Foreground="#68788D" Text="WARNINGS / UNAVAILABLE DATA" />
+           <ScrollViewer Margin="0,8,0,0" VerticalScrollBarVisibility="Auto">
+            <TextBlock Foreground="#7A4B00" TextWrapping="Wrap" Text="{Binding WarningsSummary}" />
+           </ScrollViewer>
+          </StackPanel>
+         </Border>
+        </Grid>
+        <Border Grid.Row="2" Margin="0,14,0,0" Padding="10" Background="#EEF2F7"
+                BorderBrush="#D9E1EC" BorderThickness="1" CornerRadius="6">
+         <TextBlock Foreground="#53657D" TextWrapping="Wrap" Text="{Binding TimestampSummary}" />
+        </Border>
+       </Grid>
+      </TabItem>
+      <TabItem Header="PC Passport" DataContext="{Binding Passport}">
+       <Grid Margin="28">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" Margin="0,0,0,22">
+            <StackPanel>
+                <TextBlock FontSize="26" FontWeight="SemiBold" Foreground="#172B4D" Text="PC Passport" />
+                <TextBlock Margin="0,4,0,0" FontSize="13" Foreground="#53657D"
+                           Text="A read-only inventory of this Windows PC" />
+            </StackPanel>
+            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button MinWidth="112" Height="38" Margin="0,0,8,0" Padding="14,0"
+                        Command="{Binding CancelScanCommand}" Content="Cancel scan" />
+                <Button MinWidth="132" Height="38" Padding="16,0"
+                        Command="{Binding ScanCommand}" Content="Scan this PC" />
+            </StackPanel>
+        </DockPanel>
+
+        <Border Grid.Row="1" Padding="16" Margin="0,0,0,14" Background="White"
+                BorderBrush="#E1E7EF" BorderThickness="1" CornerRadius="8">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <TextBlock FontSize="11" FontWeight="SemiBold" Foreground="#68788D" Text="LATEST SCAN" />
+                    <TextBlock Margin="0,5,0,0" FontSize="16" FontWeight="SemiBold"
+                               Foreground="#172B4D" Text="{Binding LatestScanStatus}" />
+                    <TextBlock Margin="0,4,0,0" Foreground="#53657D" Text="{Binding LatestScanTime}" />
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBlock FontSize="11" FontWeight="SemiBold" Foreground="#68788D" Text="COVERAGE" />
+                    <TextBlock Margin="0,5,0,0" Foreground="#172B4D" Text="{Binding CoverageText}" />
+                    <TextBlock Margin="0,4,0,0" Foreground="#53657D" Text="{Binding ProgressMessage}" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="2" Padding="10" Margin="0,0,0,12" Background="White"
+                BorderBrush="#E1E7EF" BorderThickness="1" CornerRadius="6">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Margin="0,0,8,0" VerticalAlignment="Center"
+                           FontWeight="SemiBold" Foreground="#53657D" Text="SCAN SCOPE" />
+                <ComboBox MinWidth="145" Margin="0,0,18,0" Padding="6,4"
+                          ItemsSource="{Binding ScanGroups}"
+                          SelectedItem="{Binding SelectedScanGroup, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBlock Margin="0,0,8,0" VerticalAlignment="Center"
+                           FontWeight="SemiBold" Foreground="#53657D" Text="CATEGORY" />
+                <ComboBox MinWidth="190" Margin="0,0,18,0" Padding="6,4"
+                          ItemsSource="{Binding Categories}"
+                          SelectedItem="{Binding SelectedCategory, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox MinWidth="220" Padding="8,4"
+                         VerticalContentAlignment="Center"
+                         ToolTip="Search category, name, source, or collected details"
+                         Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="3" Padding="10" Margin="0,0,0,12" Background="#FFF4E5"
+                BorderBrush="#F0D8AD" BorderThickness="1" CornerRadius="6"
+                Visibility="{Binding HasError, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <TextBlock Foreground="#7A4B00" TextWrapping="Wrap" Text="{Binding ErrorMessage}" />
+        </Border>
+
+        <Grid Grid.Row="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*" />
+                <RowDefinition Height="2*" />
+            </Grid.RowDefinitions>
+            <DataGrid Grid.Row="0"
+                      ItemsSource="{Binding FilteredComponents}"
+                      SelectedItem="{Binding SelectedComponent, Mode=TwoWay}"
+                      AutoGenerateColumns="False"
+                      IsReadOnly="True"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False"
+                      CanUserReorderColumns="True"
+                      GridLinesVisibility="Horizontal"
+                      HeadersVisibility="Column"
+                      Background="White"
+                      BorderBrush="#E1E7EF"
+                      RowBackground="White"
+                      AlternatingRowBackground="#F8FAFC"
+                      SelectionMode="Single">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Category" Binding="{Binding Category}" Width="115" />
+                    <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="130" />
+                    <DataGridTextColumn Header="Component" Binding="{Binding DisplayName}" Width="2*" />
+                    <DataGridTextColumn Header="Status" Binding="{Binding StatusText}" Width="190" />
+                    <DataGridTextColumn Header="History" Binding="{Binding ComparisonText}" Width="230" />
+                    <DataGridTextColumn Header="Source" Binding="{Binding Source}" Width="95" />
+                    <DataGridTextColumn Header="Last verified (local)" Binding="{Binding ObservedAtLocal}" Width="175" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <Border Grid.Row="1" Margin="0,10,0,0" Padding="12" Background="White"
+                    BorderBrush="#E1E7EF" BorderThickness="1" CornerRadius="6">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <TextBlock Foreground="#344563" TextWrapping="Wrap"
+                               Text="{Binding SelectedDetails}" />
+                </ScrollViewer>
+            </Border>
+            <StackPanel Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"
+                        Visibility="{Binding IsInventoryEmpty, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <TextBlock FontSize="16" FontWeight="SemiBold" Foreground="#53657D"
+                           HorizontalAlignment="Center" Text="{Binding EmptyStateTitle}" />
+                <TextBlock Margin="0,6,0,0" Foreground="#68788D"
+                           HorizontalAlignment="Center" Text="Run a scan or select another category." />
+            </StackPanel>
+        </Grid>
+
+        <DockPanel Grid.Row="5" Margin="0,12,0,0">
+            <TextBlock Foreground="#53657D" Text="{Binding FooterText}" />
+            <TextBlock DockPanel.Dock="Right" Foreground="#68788D" Text="WinForge inventory is stored locally." />
+        </DockPanel>
+       </Grid>
+      </TabItem>
+      <TabItem Header="Recovery Center" DataContext="{Binding Recovery}">
+       <Grid Margin="28">
+        <Grid.RowDefinitions>
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="*" />
+         <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" Margin="0,0,0,18">
+         <StackPanel>
+          <TextBlock FontSize="26" FontWeight="SemiBold" Foreground="#172B4D" Text="Recovery Center" />
+          <TextBlock Margin="0,4,0,0" FontSize="13" Foreground="#53657D"
+                     Text="Read-only discovery of Windows recovery options and storage" />
+         </StackPanel>
+         <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right">
+          <Button MinWidth="112" Height="38" Margin="0,0,8,0" Padding="14,0"
+                  Command="{Binding CancelCommand}" Content="Cancel discovery" />
+          <Button MinWidth="150" Height="38" Padding="16,0"
+                  Command="{Binding DiscoverCommand}" Content="Discover recovery options" />
+         </StackPanel>
+        </DockPanel>
+
+        <Border Grid.Row="1" Padding="16" Margin="0,0,0,12" Background="White"
+                BorderBrush="#E1E7EF" BorderThickness="1" CornerRadius="8">
+         <Grid>
+          <Grid.ColumnDefinitions>
+           <ColumnDefinition Width="*" />
+           <ColumnDefinition Width="2*" />
+           <ColumnDefinition Width="2*" />
+           </Grid.ColumnDefinitions>
+          <StackPanel>
+           <TextBlock FontSize="11" FontWeight="SemiBold" Foreground="#68788D" Text="DISCOVERY STATUS" />
+           <TextBlock Margin="0,5,0,0" FontSize="16" FontWeight="SemiBold"
+                      Foreground="#172B4D" Text="{Binding StatusText}" />
+           <TextBlock Margin="0,4,0,0" Foreground="#53657D" Text="{Binding LastObservedText}" />
+          </StackPanel>
+          <StackPanel Grid.Column="1">
+           <TextBlock FontSize="11" FontWeight="SemiBold" Foreground="#68788D" Text="READINESS ASSESSMENT" />
+           <TextBlock Margin="0,5,0,0" Foreground="#172B4D" TextWrapping="Wrap"
+                      Text="{Binding AssessmentSummaryText}" />
+          </StackPanel>
+          <StackPanel Grid.Column="2">
+           <TextBlock FontSize="11" FontWeight="SemiBold" Foreground="#68788D" Text="IMPORTANT LIMITATION" />
+           <TextBlock Margin="0,5,0,0" Foreground="#7A4B00" TextWrapping="Wrap"
+                      Text="{Binding WarningText}" />
+          </StackPanel>
+         </Grid>
+        </Border>
+
+        <Border Grid.Row="2" Padding="10" Margin="0,0,0,12" Background="#FFF4E5"
+                BorderBrush="#F0D8AD" BorderThickness="1" CornerRadius="6"
+                Visibility="{Binding HasError, Converter={StaticResource BooleanToVisibilityConverter}}">
+         <TextBlock Foreground="#7A4B00" TextWrapping="Wrap" Text="{Binding ErrorMessage}" />
+        </Border>
+
+        <Grid Grid.Row="3">
+         <Grid.RowDefinitions>
+          <RowDefinition Height="3*" />
+          <RowDefinition Height="2*" />
+         </Grid.RowDefinitions>
+         <DataGrid Grid.Row="0"
+                   ItemsSource="{Binding Items}"
+                   SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                   AutoGenerateColumns="False"
+                   IsReadOnly="True"
+                   CanUserAddRows="False"
+                   CanUserDeleteRows="False"
+                   GridLinesVisibility="Horizontal"
+                   HeadersVisibility="Column"
+                   Background="White"
+                   BorderBrush="#E1E7EF"
+                   RowBackground="White"
+                   AlternatingRowBackground="#F8FAFC"
+                   SelectionMode="Single">
+          <DataGrid.Columns>
+           <DataGridTextColumn Header="Category" Binding="{Binding Category}" Width="150" />
+           <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="155" />
+           <DataGridTextColumn Header="Recovery item" Binding="{Binding DisplayName}" Width="2*" />
+           <DataGridTextColumn Header="Status / availability" Binding="{Binding StatusText}" Width="210" />
+           <DataGridTextColumn Header="Source" Binding="{Binding Source}" Width="190" />
+           <DataGridTextColumn Header="Last observed (local)" Binding="{Binding ObservedAtLocal}" Width="175" />
+          </DataGrid.Columns>
+         </DataGrid>
+         <Border Grid.Row="1" Margin="0,10,0,0" Padding="12" Background="White"
+                 BorderBrush="#E1E7EF" BorderThickness="1" CornerRadius="6">
+          <ScrollViewer VerticalScrollBarVisibility="Auto">
+           <TextBlock Foreground="#344563" TextWrapping="Wrap" Text="{Binding SelectedDetails}" />
+          </ScrollViewer>
+         </Border>
+         <StackPanel Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"
+                     Visibility="{Binding IsInventoryEmpty, Converter={StaticResource BooleanToVisibilityConverter}}">
+          <TextBlock FontSize="16" FontWeight="SemiBold" Foreground="#53657D"
+                     HorizontalAlignment="Center" Text="No recovery discovery data yet" />
+          <TextBlock Margin="0,6,0,0" Foreground="#68788D"
+                     HorizontalAlignment="Center" Text="Run discovery to inspect what Windows reports." />
+         </StackPanel>
+        </Grid>
+
+        <DockPanel Grid.Row="4" Margin="0,12,0,0">
+         <TextBlock Foreground="#53657D" Text="{Binding FooterText}" />
+         <TextBlock DockPanel.Dock="Right" Foreground="#68788D"
+                    Text="Discovery only — no restore, backup, or configuration operation is available." />
+        </DockPanel>
+       </Grid>
+      </TabItem>
+      <TabItem Header="Recovery Backups" DataContext="{Binding BackupIntelligence}">
+       <Grid Margin="28">
+        <Grid.RowDefinitions>
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="*" />
+         <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" Margin="0,0,0,16">
+         <StackPanel>
+          <TextBlock FontSize="26" FontWeight="SemiBold" Foreground="#172B4D" Text="Recovery Backup Intelligence" />
+          <TextBlock Margin="0,4,0,0" FontSize="13" Foreground="#53657D"
+                     Text="Bounded, read-only inspection of discovered Windows backup metadata" />
+         </StackPanel>
+         <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right">
+          <Button MinWidth="120" Height="38" Margin="0,0,8,0" Padding="14,0"
+                  Command="{Binding RefreshCatalogCommand}" Content="Refresh catalog" />
+          <Button MinWidth="122" Height="38" Margin="0,0,8,0" Padding="14,0"
+                  Command="{Binding CancelCommand}" Content="Cancel inspection" />
+          <Button MinWidth="126" Height="38" Padding="14,0"
+                  Command="{Binding InspectCommand}" Content="Inspect selected" />
+         </StackPanel>
+        </DockPanel>
+
+        <Border Grid.Row="1" Padding="10" Margin="0,0,0,10" Background="White"
+                BorderBrush="#E1E7EF" BorderThickness="1" CornerRadius="6">
+         <StackPanel Orientation="Horizontal">
+          <TextBlock Margin="0,0,8,0" VerticalAlignment="Center"
+                     FontWeight="SemiBold" Foreground="#53657D" Text="FILTER" />
+          <ComboBox MinWidth="200" Margin="0,0,14,0" Padding="6,4"
+                    ItemsSource="{Binding ProviderFilters}"
+                    SelectedItem="{Binding SelectedProvider}" />
+          <ComboBox MinWidth="180" Margin="0,0,14,0" Padding="6,4"
+                    ItemsSource="{Binding StateFilters}"
+                    SelectedItem="{Binding SelectedState}" />
+          <Button Margin="0,0,8,0" Padding="12,5"
+                  Command="{Binding LoadHistoryCommand}" Content="Load inspection history" />
+          <Button Padding="12,5"
+                  Command="{Binding CompareCommand}" Content="Compare latest with previous" />
+         </StackPanel>
+        </Border>
+
+        <Border Grid.Row="2" Padding="10" Margin="0,0,0,10" Background="#FFF4E5"
+                BorderBrush="#F0D8AD" BorderThickness="1" CornerRadius="6"
+                Visibility="{Binding HasError, Converter={StaticResource BooleanToVisibilityConverter}}">
+         <TextBlock Foreground="#7A4B00" TextWrapping="Wrap" Text="{Binding ErrorMessage}" />
+        </Border>
+
+        <Grid Grid.Row="3">
+         <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="3*" />
+          <ColumnDefinition Width="4*" />
+         </Grid.ColumnDefinitions>
+         <DataGrid Grid.Column="0" Margin="0,0,6,0"
+                   ItemsSource="{Binding FilteredCandidates}"
+                   SelectedItem="{Binding SelectedCandidate, Mode=TwoWay}"
+                   AutoGenerateColumns="False"
+                   IsReadOnly="True"
+                   CanUserAddRows="False"
+                   CanUserDeleteRows="False"
+                   GridLinesVisibility="Horizontal"
+                   HeadersVisibility="Column"
+                   Background="White"
+                   BorderBrush="#E1E7EF"
+                   RowBackground="White"
+                   AlternatingRowBackground="#F8FAFC"
+                   SelectionMode="Single">
+          <DataGrid.Columns>
+           <DataGridTextColumn Header="Backup candidate" Binding="{Binding Candidate.DisplayName}" Width="*" />
+           <DataGridTextColumn Header="Provider" Binding="{Binding Candidate.Provider}" Width="150" />
+           <DataGridTextColumn Header="Latest check" Binding="{Binding LatestInspectionState}" Width="100" />
+           <DataGridTextColumn Header="Location" Binding="{Binding Candidate.Location}" Width="180" />
+          </DataGrid.Columns>
+         </DataGrid>
+         <Grid Grid.Column="1" Margin="6,0,0,0">
+          <Grid.RowDefinitions>
+           <RowDefinition Height="2*" />
+           <RowDefinition Height="3*" />
+          </Grid.RowDefinitions>
+          <DataGrid Grid.Row="0"
+                    ItemsSource="{Binding InspectionHistory}"
+                    SelectedItem="{Binding SelectedInspection, Mode=TwoWay}"
+                    AutoGenerateColumns="False"
+                    IsReadOnly="True"
+                    CanUserAddRows="False"
+                    CanUserDeleteRows="False"
+                    GridLinesVisibility="Horizontal"
+                    HeadersVisibility="Column"
+                    Background="White"
+                    BorderBrush="#E1E7EF"
+                    RowBackground="White"
+                    AlternatingRowBackground="#F8FAFC">
+           <DataGrid.Columns>
+            <DataGridTextColumn Header="Inspected (local)" Binding="{Binding CompletedAt, StringFormat={}{0:g}}" Width="150" />
+            <DataGridTextColumn Header="State" Binding="{Binding State}" Width="105" />
+            <DataGridTextColumn Header="Result" Binding="{Binding Summary}" Width="*" />
+           </DataGrid.Columns>
+          </DataGrid>
+          <Border Grid.Row="1" Margin="0,10,0,0" Padding="12" Background="White"
+                  BorderBrush="#E1E7EF" BorderThickness="1" CornerRadius="6">
+           <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <TextBlock Foreground="#344563" TextWrapping="Wrap" Text="{Binding DetailsText}" />
+           </ScrollViewer>
+          </Border>
+         </Grid>
+         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
+                     Visibility="{Binding IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}">
+          <TextBlock FontSize="16" FontWeight="SemiBold" Foreground="#53657D"
+                     HorizontalAlignment="Center" Text="No matching backup candidates" />
+          <TextBlock Margin="0,6,0,0" Foreground="#68788D"
+                     HorizontalAlignment="Center" Text="Run read-only Recovery discovery, then refresh this catalog." />
+         </StackPanel>
+        </Grid>
+
+        <DockPanel Grid.Row="4" Margin="0,10,0,0">
+         <StackPanel>
+          <TextBlock Foreground="#53657D" Text="{Binding StatusText}" />
+          <TextBlock Margin="0,3,0,0" Foreground="#68788D" Text="{Binding ComparisonText}" />
+         </StackPanel>
+         <TextBlock DockPanel.Dock="Right" Foreground="#7A4B00"
+                    Text="Inspection is bounded and read-only; passing checks do not prove complete restoreability." />
+        </DockPanel>
+       </Grid>
+      </TabItem>
+      <TabItem Header="Guardian Observer" DataContext="{Binding Guardian}">
+       <Grid Margin="28">
+        <Grid.RowDefinitions>
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="*" />
+         <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" Margin="0,0,0,16">
+         <StackPanel>
+          <TextBlock FontSize="26" FontWeight="SemiBold" Foreground="#172B4D" Text="Guardian Observer" />
+          <TextBlock Margin="0,4,0,0" FontSize="13" Foreground="#53657D"
+                     Text="User-started, read-only system telemetry. Monitoring never changes system state." />
+         </StackPanel>
+         <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right">
+          <Button MinWidth="100" Height="38" Margin="0,0,8,0" Padding="14,0"
+                  Command="{Binding StopCommand}" Content="Stop" />
+          <Button MinWidth="120" Height="38" Padding="16,0"
+                  Command="{Binding StartCommand}" Content="Start monitoring" />
+         </StackPanel>
+        </DockPanel>
+
+        <Border Grid.Row="1" Padding="12" Margin="0,0,0,10" Background="#FFF4E5"
+                BorderBrush="#F0D8AD" BorderThickness="1" CornerRadius="6">
+         <StackPanel>
+          <TextBlock FontWeight="SemiBold" Foreground="#7A4B00"
+                     Text="Observer only — no optimization, process control, service control, or automated remediation is available." />
+          <TextBlock Margin="0,4,0,0" Foreground="#7A4B00" TextWrapping="Wrap"
+                     Text="{Binding StatusText}" />
+         </StackPanel>
+        </Border>
+
+        <Border Grid.Row="2" Padding="10" Margin="0,0,0,10" Background="White"
+                BorderBrush="#E1E7EF" BorderThickness="1" CornerRadius="6">
+         <WrapPanel VerticalAlignment="Center">
+          <TextBlock Margin="0,0,10,0" VerticalAlignment="Center" FontWeight="SemiBold"
+                     Foreground="#53657D" Text="THRESHOLDS / HISTORY" />
+          <TextBlock Margin="0,0,4,0" VerticalAlignment="Center" Text="CPU warning/critical %" />
+          <TextBox Width="44" Margin="0,0,3,4" Padding="5,3"
+                   Text="{Binding CpuWarningPercent, UpdateSourceTrigger=PropertyChanged}" />
+          <TextBox Width="44" Margin="0,0,12,4" Padding="5,3"
+                   Text="{Binding CpuCriticalPercent, UpdateSourceTrigger=PropertyChanged}" />
+          <TextBlock Margin="0,0,4,0" VerticalAlignment="Center" Text="Memory %" />
+          <TextBox Width="44" Margin="0,0,3,4" Padding="5,3"
+                   Text="{Binding MemoryWarningPercent, UpdateSourceTrigger=PropertyChanged}" />
+          <TextBox Width="44" Margin="0,0,12,4" Padding="5,3"
+                   Text="{Binding MemoryCriticalPercent, UpdateSourceTrigger=PropertyChanged}" />
+          <TextBlock Margin="0,0,4,0" VerticalAlignment="Center" Text="Free storage %" />
+          <TextBox Width="44" Margin="0,0,3,4" Padding="5,3"
+                   Text="{Binding MinimumFreeStoragePercent, UpdateSourceTrigger=PropertyChanged}" />
+          <TextBox Width="44" Margin="0,0,12,4" Padding="5,3"
+                   Text="{Binding MinimumFreeStorageCriticalPercent, UpdateSourceTrigger=PropertyChanged}" />
+          <TextBlock Margin="0,0,4,0" VerticalAlignment="Center" Text="Interval (s)" />
+          <TextBox Width="42" Margin="0,0,10,4" Padding="5,3"
+                   Text="{Binding SamplingIntervalSeconds, UpdateSourceTrigger=PropertyChanged}" />
+          <TextBlock Margin="0,0,4,0" VerticalAlignment="Center" Text="Keep (days/samples)" />
+          <TextBox Width="42" Margin="0,0,3,4" Padding="5,3"
+                   Text="{Binding RetentionDays, UpdateSourceTrigger=PropertyChanged}" />
+          <TextBox Width="65" Margin="0,0,10,4" Padding="5,3"
+                   Text="{Binding MaximumStoredSamples, UpdateSourceTrigger=PropertyChanged}" />
+          <ComboBox Width="125" Margin="0,0,6,4" Padding="4"
+                    ItemsSource="{Binding TimeRangeOptions}" SelectedItem="{Binding SelectedTimeRange}" />
+          <Button Margin="0,0,0,4" Padding="10,4" Command="{Binding LoadHistoryCommand}"
+                  Content="Refresh history" />
+         </WrapPanel>
+        </Border>
+
+        <Border Grid.Row="3" Padding="10" Margin="0,0,0,10" Background="#FFF4E5"
+                BorderBrush="#F0D8AD" BorderThickness="1" CornerRadius="6"
+                Visibility="{Binding HasError, Converter={StaticResource BooleanToVisibilityConverter}}">
+         <TextBlock Foreground="#7A4B00" TextWrapping="Wrap" Text="{Binding ErrorMessage}" />
+        </Border>
+
+        <Border Grid.Row="4" Padding="14" Margin="0,0,0,10" Background="White"
+                BorderBrush="#E1E7EF" BorderThickness="1" CornerRadius="6">
+         <WrapPanel>
+          <TextBlock Margin="0,0,16,6" FontWeight="SemiBold" Foreground="#172B4D" Text="{Binding CpuText}" />
+          <TextBlock Margin="0,0,16,6" FontWeight="SemiBold" Foreground="#172B4D" Text="{Binding MemoryText}" />
+          <TextBlock Margin="0,0,16,6" FontWeight="SemiBold" Foreground="#172B4D" Text="{Binding StorageText}" />
+          <TextBlock Margin="0,0,16,6" FontWeight="SemiBold" Foreground="#172B4D" Text="{Binding UptimeText}" />
+          <TextBlock Margin="0,0,16,6" Foreground="#172B4D" Text="{Binding NetworkText}" />
+          <TextBlock Margin="0,0,16,6" Foreground="#172B4D" Text="{Binding ProcessText}" />
+          <TextBlock Margin="0,0,16,6" Foreground="#172B4D" Text="{Binding GpuText}" />
+         </WrapPanel>
+        </Border>
+
+        <Grid Grid.Row="5">
+         <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="3*" />
+          <ColumnDefinition Width="2*" />
+         </Grid.ColumnDefinitions>
+         <Grid Grid.Column="0" Margin="0,0,6,0">
+          <Grid.RowDefinitions>
+           <RowDefinition Height="2*" />
+           <RowDefinition Height="3*" />
+          </Grid.RowDefinitions>
+          <DataGrid Grid.Row="0" Margin="0,0,0,6"
+                   ItemsSource="{Binding History}"
+                   AutoGenerateColumns="False"
+                   IsReadOnly="True"
+                   CanUserAddRows="False"
+                   CanUserDeleteRows="False"
+                   GridLinesVisibility="Horizontal"
+                   HeadersVisibility="Column"
+                   Background="White"
+                   BorderBrush="#E1E7EF"
+                   RowBackground="White"
+                   AlternatingRowBackground="#F8FAFC">
+          <DataGrid.Columns>
+           <DataGridTextColumn Header="Local sample time" Binding="{Binding CollectedAt}" Width="*" />
+           <DataGridTextColumn Header="CPU" Binding="{Binding CpuUsage}" Width="75" />
+           <DataGridTextColumn Header="Memory" Binding="{Binding MemoryUsage}" Width="130" />
+           <DataGridTextColumn Header="Volumes" Binding="{Binding StorageVolumes}" Width="110" />
+           <DataGridTextColumn Header="Uptime" Binding="{Binding Uptime}" Width="120" />
+          <DataGridTextColumn Header="Network (tx/rx)" Binding="{Binding Network}" Width="2*" />
+          <DataGridTextColumn Header="Processes" Binding="{Binding ProcessCount}" Width="90" />
+          <DataGridTextColumn Header="GPU" Binding="{Binding GpuMetrics}" Width="2*" />
+         </DataGrid.Columns>
+         </DataGrid>
+         <DataGrid Grid.Row="1"
+                  ItemsSource="{Binding HistoricalSummaries}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  GridLinesVisibility="Horizontal"
+                  HeadersVisibility="Column"
+                  Background="White"
+                  BorderBrush="#E1E7EF"
+                  RowBackground="White"
+                  AlternatingRowBackground="#F8FAFC">
+          <DataGrid.Columns>
+           <DataGridTextColumn Header="Metric" Binding="{Binding Metric}" Width="2*" />
+           <DataGridTextColumn Header="Entity / interface" Binding="{Binding EntityIdentity}" Width="2*" />
+           <DataGridTextColumn Header="Samples" Binding="{Binding SampleCount}" Width="65" />
+           <DataGridTextColumn Header="Unavailable" Binding="{Binding UnavailableCount}" Width="85" />
+           <DataGridTextColumn Header="Average" Binding="{Binding Average}" Width="95" />
+           <DataGridTextColumn Header="Min" Binding="{Binding Minimum}" Width="85" />
+           <DataGridTextColumn Header="Max" Binding="{Binding Maximum}" Width="85" />
+           <DataGridTextColumn Header="Latest" Binding="{Binding Latest}" Width="95" />
+           <DataGridTextColumn Header="Gaps" Binding="{Binding SamplingGapCount}" Width="55" />
+           <DataGridTextColumn Header="Prior avg" Binding="{Binding PreviousPeriodAverage}" Width="95" />
+           <DataGridTextColumn Header="Source" Binding="{Binding Source}" Width="160" />
+          </DataGrid.Columns>
+         </DataGrid>
+         </Grid>
+         <TabControl Grid.Column="1" Margin="6,0,0,0">
+         <TabItem Header="Assessment">
+         <DataGrid
+                  ItemsSource="{Binding Findings}"
+                   AutoGenerateColumns="False"
+                   IsReadOnly="True"
+                   CanUserAddRows="False"
+                   CanUserDeleteRows="False"
+                   GridLinesVisibility="Horizontal"
+                   HeadersVisibility="Column"
+                   Background="White"
+                   BorderBrush="#E1E7EF"
+                   RowBackground="White"
+                   AlternatingRowBackground="#F8FAFC">
+          <DataGrid.Columns>
+           <DataGridTextColumn Header="State" Binding="{Binding State}" Width="95" />
+           <DataGridTextColumn Header="Metric" Binding="{Binding Category}" Width="115" />
+           <DataGridTextColumn Header="Finding" Binding="{Binding Message}" Width="2*" />
+           <DataGridTextColumn Header="Source" Binding="{Binding Source}" Width="150" />
+          </DataGrid.Columns>
+          </DataGrid>
+          </TabItem>
+          <TabItem Header="Active alerts">
+           <DataGrid ItemsSource="{Binding ActiveAlerts}" AutoGenerateColumns="False" IsReadOnly="True"
+                     CanUserAddRows="False" CanUserDeleteRows="False" GridLinesVisibility="Horizontal"
+                     HeadersVisibility="Column" Background="White" BorderBrush="#E1E7EF"
+                     RowBackground="White" AlternatingRowBackground="#F8FAFC">
+            <DataGrid.Columns>
+             <DataGridTextColumn Header="State" Binding="{Binding State}" Width="90" />
+             <DataGridTextColumn Header="Metric" Binding="{Binding Category}" Width="110" />
+             <DataGridTextColumn Header="Finding" Binding="{Binding Message}" Width="2*" />
+             <DataGridTextColumn Header="Source" Binding="{Binding Source}" Width="140" />
+            </DataGrid.Columns>
+           </DataGrid>
+          </TabItem>
+          <TabItem Header="Historical threshold crossings">
+           <DataGrid ItemsSource="{Binding HistoricalThresholdCrossings}" AutoGenerateColumns="False"
+                     IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False"
+                     GridLinesVisibility="Horizontal" HeadersVisibility="Column" Background="White"
+                     BorderBrush="#E1E7EF" RowBackground="White" AlternatingRowBackground="#F8FAFC">
+            <DataGrid.Columns>
+             <DataGridTextColumn Header="Metric" Binding="{Binding Category}" Width="2*" />
+             <DataGridTextColumn Header="Warning samples" Binding="{Binding WarningSampleCount}" Width="130" />
+             <DataGridTextColumn Header="Critical samples" Binding="{Binding CriticalSampleCount}" Width="130" />
+             <DataGridTextColumn Header="Most recent" Binding="{Binding MostRecentAt}" Width="160" />
+            </DataGrid.Columns>
+           </DataGrid>
+          </TabItem>
+         </TabControl>
+        </Grid>
+
+        <DockPanel Grid.Row="6" Margin="0,10,0,0">
+         <TextBlock Foreground="#53657D" Text="{Binding LastSampleText}" />
+         <TextBlock DockPanel.Dock="Right" Foreground="#68788D"
+                    Text="{Binding HistoricalSummaryText}" />
+        </DockPanel>
+       </Grid>
+      </TabItem>
+      <TabItem Header="Digital Twin" DataContext="{Binding DigitalTwin}">
+       <Grid Margin="28">
+        <Grid.RowDefinitions>
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="*" />
+         <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" Margin="0,0,0,18">
+         <StackPanel>
+          <TextBlock FontSize="26" FontWeight="SemiBold" Foreground="#172B4D" Text="Digital Twin" />
+          <TextBlock Margin="0,4,0,0" FontSize="13" Foreground="#53657D"
+                     Text="A persistent, evidence-based model built from PC Passport observations" />
+         </StackPanel>
+         <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right">
+          <Button MinWidth="145" Height="38" Margin="0,0,8,0" Padding="14,0"
+                  Command="{Binding LoadSnapshotCommand}" Content="Open selected snapshot" />
+          <Button MinWidth="145" Height="38" Padding="16,0"
+                  Command="{Binding CreateSnapshotCommand}" Content="Create snapshot" />
+         </StackPanel>
+        </DockPanel>
+
+        <Border Grid.Row="1" Padding="12" Margin="0,0,0,12" Background="White"
+                BorderBrush="#E1E7EF" BorderThickness="1" CornerRadius="6">
+         <WrapPanel VerticalAlignment="Center">
+          <TextBlock Margin="0,0,8,0" VerticalAlignment="Center"
+                     FontWeight="SemiBold" Foreground="#53657D" Text="SNAPSHOT HISTORY" />
+          <ComboBox MinWidth="180" Margin="0,0,8,4" Padding="6,4"
+                    ItemsSource="{Binding History}"
+                    DisplayMemberPath="CreatedAt"
+                    SelectedItem="{Binding SelectedHistoryEntry, Mode=TwoWay}" />
+          <TextBlock Margin="0,0,6,0" VerticalAlignment="Center"
+                     FontWeight="SemiBold" Foreground="#53657D" Text="COMPARE TO" />
+          <ComboBox MinWidth="180" Margin="0,0,8,4" Padding="6,4"
+                    ItemsSource="{Binding History}"
+                    DisplayMemberPath="CreatedAt"
+                    SelectedItem="{Binding ComparisonHistoryEntry, Mode=TwoWay}" />
+          <Button Margin="0,0,14,4" Padding="10,4" Command="{Binding CompareSnapshotsCommand}"
+                  Content="Compare" />
+          <TextBlock Margin="0,0,8,0" VerticalAlignment="Center"
+                     FontWeight="SemiBold" Foreground="#53657D" Text="CATEGORY" />
+          <ComboBox MinWidth="140" Margin="0,0,10,4" Padding="6,4"
+                    ItemsSource="{Binding EntityCategories}"
+                    SelectedItem="{Binding SelectedCategory, UpdateSourceTrigger=PropertyChanged}" />
+          <TextBox MinWidth="180" Margin="0,0,0,4" Padding="8,4" VerticalContentAlignment="Center"
+                   ToolTip="Search entity names, identities, or sources"
+                   Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" />
+         </WrapPanel>
+        </Border>
+
+        <Border Grid.Row="2" Padding="12" Margin="0,0,0,12" Background="#FFF4E5"
+                BorderBrush="#F0D8AD" BorderThickness="1" CornerRadius="6"
+                Visibility="{Binding HasError, Converter={StaticResource BooleanToVisibilityConverter}}">
+         <TextBlock Foreground="#7A4B00" TextWrapping="Wrap" Text="{Binding ErrorMessage}" />
+        </Border>
+
+        <Grid Grid.Row="3">
+         <Grid.RowDefinitions>
+          <RowDefinition Height="3*" />
+          <RowDefinition Height="2*" />
+         </Grid.RowDefinitions>
+         <DataGrid Grid.Row="0"
+                   ItemsSource="{Binding FilteredEntities}"
+                   SelectedItem="{Binding SelectedEntity, Mode=TwoWay}"
+                   AutoGenerateColumns="False"
+                   IsReadOnly="True"
+                   CanUserAddRows="False"
+                   CanUserDeleteRows="False"
+                   GridLinesVisibility="Horizontal"
+                   HeadersVisibility="Column"
+                   Background="White"
+                   BorderBrush="#E1E7EF"
+                   RowBackground="White"
+                   AlternatingRowBackground="#F8FAFC"
+                   SelectionMode="Single">
+          <DataGrid.Columns>
+           <DataGridTextColumn Header="Category" Binding="{Binding Type}" Width="135" />
+           <DataGridTextColumn Header="Entity" Binding="{Binding DisplayName}" Width="2*" />
+           <DataGridTextColumn Header="Availability" Binding="{Binding Availability}" Width="135" />
+           <DataGridTextColumn Header="Confidence" Binding="{Binding Confidence, StringFormat=P0}" Width="110" />
+           <DataGridTextColumn Header="Source" Binding="{Binding Source}" Width="190" />
+           <DataGridTextColumn Header="Last observed" Binding="{Binding LastObservedAt, StringFormat={}{0:g}}" Width="175" />
+          </DataGrid.Columns>
+         </DataGrid>
+         <Border Grid.Row="1" Margin="0,10,0,0" Padding="12" Background="White"
+                 BorderBrush="#E1E7EF" BorderThickness="1" CornerRadius="6">
+          <TabControl>
+           <TabItem Header="Entity evidence">
+            <Grid Margin="6">
+             <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="Auto" />
+             </Grid.ColumnDefinitions>
+             <ScrollViewer VerticalScrollBarVisibility="Auto">
+              <TextBlock Foreground="#344563" TextWrapping="Wrap" Text="{Binding DetailsText}" />
+             </ScrollViewer>
+             <Button Grid.Column="1" Margin="12,0,0,0" Padding="12,6"
+                     VerticalAlignment="Top"
+                     Command="{Binding ShowDependenciesCommand}"
+                     Content="Explore dependencies" />
+            </Grid>
+           </TabItem>
+           <TabItem Header="Entity comparison">
+            <ScrollViewer Margin="6" VerticalScrollBarVisibility="Auto">
+             <TextBlock Foreground="#344563" TextWrapping="Wrap" Text="{Binding ComparisonDetailsText}" />
+            </ScrollViewer>
+           </TabItem>
+           <TabItem Header="Relationship comparison">
+            <DockPanel Margin="6">
+             <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,6">
+              <TextBlock Margin="0,0,8,0" VerticalAlignment="Center" FontWeight="SemiBold"
+                         Foreground="#53657D" Text="RELATIONSHIP TYPE" />
+              <ComboBox Width="180" Padding="5,3"
+                        ItemsSource="{Binding RelationshipTypes}"
+                        SelectedItem="{Binding SelectedRelationshipType}" />
+             </StackPanel>
+             <DataGrid ItemsSource="{Binding FilteredRelationshipChanges}" AutoGenerateColumns="False"
+                       IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False"
+                       GridLinesVisibility="Horizontal" HeadersVisibility="Column" Background="White"
+                       BorderBrush="#E1E7EF" RowBackground="White" AlternatingRowBackground="#F8FAFC">
+              <DataGrid.Columns>
+               <DataGridTextColumn Header="Change" Binding="{Binding Type}" Width="130" />
+               <DataGridTextColumn Header="Relationship" Binding="{Binding Relationship.Type}" Width="140" />
+               <DataGridTextColumn Header="Source" Binding="{Binding Relationship.SourceIdentity}" Width="*" />
+               <DataGridTextColumn Header="Target" Binding="{Binding Relationship.TargetIdentity}" Width="*" />
+               <DataGridTextColumn Header="Confidence" Binding="{Binding Relationship.Confidence, StringFormat=P0}" Width="100" />
+               <DataGridTextColumn Header="Evidence source" Binding="{Binding Relationship.EvidenceSource}" Width="160" />
+               <DataGridTextColumn Header="Last observed" Binding="{Binding Relationship.LastObservedAt, StringFormat={}{0:g}}" Width="150" />
+               <DataGridTextColumn Header="Explanation" Binding="{Binding Explanation}" Width="2*" />
+              </DataGrid.Columns>
+             </DataGrid>
+            </DockPanel>
+           </TabItem>
+          </TabControl>
+         </Border>
+         <StackPanel Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"
+                     Visibility="{Binding IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}">
+          <TextBlock FontSize="16" FontWeight="SemiBold" Foreground="#53657D"
+                     HorizontalAlignment="Center" Text="No Digital Twin snapshot loaded" />
+          <TextBlock Margin="0,6,0,0" Foreground="#68788D"
+                     HorizontalAlignment="Center" Text="Run a PC Passport scan, then create a snapshot." />
+         </StackPanel>
+        </Grid>
+
+        <DockPanel Grid.Row="4" Margin="0,12,0,0">
+         <StackPanel>
+          <TextBlock Foreground="#53657D" Text="{Binding StatusText}" />
+          <TextBlock Margin="0,3,0,0" Foreground="#68788D" Text="{Binding ChangeText}" />
+         </StackPanel>
+         <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right">
+          <TextBlock Margin="0,0,12,0" VerticalAlignment="Center" Foreground="#68788D"
+                     Text="{Binding PageStatusText}" />
+          <Button Margin="0,0,6,0" Padding="10,4"
+                  Command="{Binding PreviousPageCommand}" Content="Previous" />
+          <Button Margin="0,0,12,0" Padding="10,4"
+                  Command="{Binding NextPageCommand}" Content="Next" />
+          <TextBlock VerticalAlignment="Center" Foreground="#68788D"
+                     Text="{Binding FooterText}" />
+         </StackPanel>
+        </DockPanel>
+       </Grid>
+      </TabItem>
+      <TabItem Header="Action Broker" DataContext="{Binding ActionBroker}">
+       <Grid Margin="28">
+        <Grid.RowDefinitions>
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="Auto" />
+         <RowDefinition Height="*" />
+         <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" Margin="0,0,0,18">
+         <StackPanel>
+          <TextBlock FontSize="26" FontWeight="SemiBold" Foreground="#172B4D" Text="Action Broker" />
+          <TextBlock Margin="0,4,0,0" FontSize="13" Foreground="#53657D"
+                     Text="Simulation-only action lifecycle, preview binding, and execution journal" />
+           <TextBlock Margin="0,5,0,0" FontWeight="SemiBold" Foreground="#9C3D10"
+                      Text="SIMULATION ONLY — no Windows settings or system state are changed." />
+          <TextBlock Margin="0,4,0,0" Foreground="#7A4B00" TextWrapping="Wrap"
+                     Text="Approval is a local label, not identity verification. The local journal is not tamper-proof; interrupted runs may lose simulated state. Not approved for real system changes." />
+         </StackPanel>
+         <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" HorizontalAlignment="Right">
+          <Button MinWidth="130" Height="38" Margin="0,0,8,0" Padding="14,0"
+                  Command="{Binding RefreshJournalCommand}" Content="Refresh journal" />
+          <Button MinWidth="110" Height="38" Padding="14,0"
+                  Command="{Binding GeneratePreviewCommand}" Content="Generate preview" />
+         </StackPanel>
+        </DockPanel>
+
+        <Border Grid.Row="1" Padding="12" Margin="0,0,0,12" Background="White"
+                BorderBrush="#E1E7EF" BorderThickness="1" CornerRadius="8">
+         <TextBlock Foreground="#344563" TextWrapping="Wrap" Text="{Binding StatusMessage}" />
+        </Border>
+
+        <Grid Grid.Row="2" Margin="0,0,0,12">
+         <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="2*" />
+          <ColumnDefinition Width="3*" />
+         </Grid.ColumnDefinitions>
+
+         <DataGrid Grid.Column="0" Margin="0,0,10,0"
+                   ItemsSource="{Binding Actions}"
+                   AutoGenerateColumns="False"
+                   IsReadOnly="True"
+                   CanUserAddRows="False"
+                   CanUserDeleteRows="False"
+                   GridLinesVisibility="Horizontal"
+                   HeadersVisibility="Column"
+                   Background="White"
+                   BorderBrush="#E1E7EF"
+                   RowBackground="White"
+                   AlternatingRowBackground="#F8FAFC"
+                   SelectionMode="Single"
+                   SelectedValuePath="ActionId"
+                   SelectedValue="{Binding SelectedActionId, Mode=TwoWay}">
+          <DataGrid.Columns>
+           <DataGridTextColumn Header="Action" Binding="{Binding Name}" Width="*" />
+           <DataGridTextColumn Header="Risk" Binding="{Binding RiskLevel}" Width="80" />
+           <DataGridTextColumn Header="Category" Binding="{Binding Category}" Width="120" />
+          </DataGrid.Columns>
+         </DataGrid>
+
+         <Border Grid.Column="1" Padding="14" Background="White" BorderBrush="#E1E7EF" BorderThickness="1" CornerRadius="8">
+          <Grid>
+           <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+           </Grid.RowDefinitions>
+
+           <TextBlock Grid.Row="0" FontWeight="SemiBold" Foreground="#172B4D" Text="{Binding SelectedActionName}" />
+           <TextBlock Grid.Row="1" Margin="0,4,0,0" Foreground="#53657D" TextWrapping="Wrap" Text="{Binding SelectedActionDescription}" />
+
+           <StackPanel Grid.Row="2" Margin="0,12,0,0">
+            <TextBlock Margin="0,0,0,4" FontWeight="SemiBold" Foreground="#53657D" Text="Target type" />
+            <ComboBox ItemsSource="{Binding AvailableTargetTypes}" SelectedItem="{Binding SelectedTargetType, Mode=TwoWay}" />
+           </StackPanel>
+
+           <StackPanel Grid.Row="3" Margin="0,12,0,0">
+            <TextBlock Margin="0,0,0,4" FontWeight="SemiBold" Foreground="#53657D" Text="Target identity" />
+            <TextBox Text="{Binding TargetIdentity, UpdateSourceTrigger=PropertyChanged}" />
+           </StackPanel>
+
+           <StackPanel Grid.Row="4" Margin="0,12,0,0">
+            <TextBlock Margin="0,0,0,4" FontWeight="SemiBold" Foreground="#53657D" Text="Display name" />
+            <TextBox Text="{Binding TargetDisplayName, UpdateSourceTrigger=PropertyChanged}" />
+           </StackPanel>
+
+           <StackPanel Grid.Row="5" Margin="0,12,0,0">
+            <TextBlock Margin="0,0,0,4" FontWeight="SemiBold" Foreground="#53657D" Text="Parameter JSON" />
+            <TextBox Height="80" AcceptsReturn="True" TextWrapping="Wrap" Text="{Binding ParameterJson, UpdateSourceTrigger=PropertyChanged}" />
+           </StackPanel>
+
+           <StackPanel Grid.Row="6" Margin="0,12,0,0">
+            <TextBlock Margin="0,0,0,4" FontWeight="SemiBold" Foreground="#53657D" Text="User intent" />
+            <TextBox Text="{Binding UserIntent, UpdateSourceTrigger=PropertyChanged}" />
+           </StackPanel>
+
+           <StackPanel Grid.Row="7" Margin="0,12,0,0" Orientation="Horizontal">
+            <Button MinWidth="120" Margin="0,0,10,0" Padding="14,8" Command="{Binding ApproveCommand}" Content="Approve" />
+            <Button MinWidth="120" Padding="14,8" Command="{Binding ExecuteCommand}" Content="Execute simulation" />
+             <Button MinWidth="90" Margin="10,0,0,0" Padding="14,8" Command="{Binding CancelCommand}" Content="Cancel" />
+           </StackPanel>
+          </Grid>
+         </Border>
+        </Grid>
+
+        <Grid Grid.Row="3" Margin="0,0,0,12">
+         <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="1.25*" />
+          <ColumnDefinition Width="1.5*" />
+         </Grid.ColumnDefinitions>
+
+         <Border Grid.Column="0" Margin="0,0,10,0" Padding="12" Background="White" BorderBrush="#E1E7EF" BorderThickness="1" CornerRadius="8">
+          <StackPanel>
+           <TextBlock FontWeight="SemiBold" Foreground="#53657D" Text="Preview and approval" />
+           <TextBlock Margin="0,8,0,0" Foreground="#344563" TextWrapping="Wrap" Text="{Binding PreviewText}" />
+           <TextBlock Margin="0,12,0,0" Foreground="#344563" TextWrapping="Wrap" Text="{Binding ApprovalText}" />
+           <TextBlock Margin="0,12,0,0" Foreground="#344563" TextWrapping="Wrap" Text="{Binding CurrentRequestSummary}" />
+           <TextBlock Margin="0,8,0,0" Foreground="#344563" TextWrapping="Wrap" Text="{Binding CurrentApprovalSummary}" />
+           <TextBlock Margin="0,8,0,0" Foreground="#7A4B00" TextWrapping="Wrap" Text="{Binding ValidationError}" />
+          </StackPanel>
+         </Border>
+
+         <Border Grid.Column="1" Padding="12" Background="White" BorderBrush="#E1E7EF" BorderThickness="1" CornerRadius="8">
+          <DockPanel>
+           <TextBlock DockPanel.Dock="Top" FontWeight="SemiBold" Foreground="#53657D" Text="Recent execution journal" />
+           <DataGrid Margin="0,8,0,0"
+                     ItemsSource="{Binding Journal}"
+                     SelectedItem="{Binding SelectedJournalEntry, Mode=TwoWay}"
+                     AutoGenerateColumns="False"
+                     IsReadOnly="True"
+                     CanUserAddRows="False"
+                     CanUserDeleteRows="False"
+                     GridLinesVisibility="Horizontal"
+                     HeadersVisibility="Column"
+                     Background="White"
+                     BorderBrush="#E1E7EF"
+                     RowBackground="White"
+                     AlternatingRowBackground="#F8FAFC"
+                     SelectionMode="Single">
+            <DataGrid.Columns>
+             <DataGridTextColumn Header="Time" Binding="{Binding Timestamp}" Width="120" />
+             <DataGridTextColumn Header="Action" Binding="{Binding ActionId}" Width="160" />
+             <DataGridTextColumn Header="State" Binding="{Binding State}" Width="90" />
+             <DataGridTextColumn Header="Summary" Binding="{Binding Summary}" Width="2*" />
+            </DataGrid.Columns>
+           </DataGrid>
+           <Border DockPanel.Dock="Bottom" Margin="0,8,0,0" Padding="8" Background="#F8FAFC"
+                   BorderBrush="#E1E7EF" BorderThickness="1" CornerRadius="4">
+            <TextBlock Foreground="#344563" TextWrapping="Wrap" Text="{Binding JournalDetailsText}" />
+           </Border>
+          </DockPanel>
+         </Border>
+        </Grid>
+
+        <Border Grid.Row="4" Padding="10" Background="#EEF2F7" BorderBrush="#D9E1EC" BorderThickness="1" CornerRadius="6">
+         <TextBlock Foreground="#53657D" TextWrapping="Wrap" Text="{Binding ExecutionText}" />
+        </Border>
+       </Grid>
+      </TabItem>
+    </TabControl>
+</Window>
