@@ -7,6 +7,7 @@ public sealed class DigitalTwinService(
     IDigitalTwinRepository repository,
     DigitalTwinBuilder builder,
     DigitalTwinGraph graph,
+    DigitalTwinImpactAnalyzer impactAnalyzer,
     DigitalTwinChangeDetector changeDetector)
 {
     public async Task<DigitalTwinSnapshot> CreateSnapshotAsync(
@@ -87,4 +88,12 @@ public sealed class DigitalTwinService(
         DigitalTwinSnapshot snapshot,
         int maximumNodes = DigitalTwinGraph.MaximumTraversalNodes) =>
         graph.FindCycles(snapshot, maximumNodes);
+
+    public DigitalTwinImpactAnalysis AnalyzeImpact(
+        DigitalTwinSnapshot snapshot,
+        string entityId,
+        int maximumDepth = 3,
+        int maximumNodes = 50,
+        int maximumRelationships = 150) =>
+        impactAnalyzer.Analyze(snapshot, entityId, maximumDepth, maximumNodes, maximumRelationships);
 }

@@ -138,6 +138,56 @@ public sealed class DigitalTwinTests
     }
 
     [Fact]
+    public void Impact_analyzer_identifies_direct_and_indirect_influence_without_claiming_causation()
+    {
+        var app = Entity(DigitalTwinEntityType.Application, "application:app");
+        var service = Entity(DigitalTwinEntityType.Service, "service:svc");
+        var dependency = Entity(DigitalTwinEntityType.Service, "service:database");
+        var driver = Entity(DigitalTwinEntityType.Driver, "driver:storage");
+        var snapshot = Snapshot(
+            [app, service, dependency, driver],
+            [
+                Relationship(app, service),
+                Relationship(service, dependency),
+                Relationship(service, driver, DigitalTwinRelationshipType.UsesPackage),
+                Relationship(driver, service, DigitalTwinRelationshipType.AssociatedWith)
+            ]);
+
+        var impact = new DigitalTwinImpactAnalyzer().Analyze(snapshot, app.Id, maximumDepth: 3, maximumNodes: 25, maximumRelationships: 25);
+
+        Assert.Equal(app.Id, impact.SourceEntity!.Id);
+        Assert.Contains(impact.DirectlyAffected, record => record.Entity.Id == service.Id);
+        Assert.Contains(impact.IndirectlyAffected, record => record.Entity.Id == dependency.Id || record.Entity.Id == driver.Id);
+        Assert.All(impact.DirectlyAffected.Concat(impact.IndirectlyAffected), record =>
+            Assert.InRange(record.Confidence, 0m, 1m));
+        Assert.Contains("direct", impact.Summary, StringComparison.OrdinalIgnoreCase);
+    }
+
+    [Fact]
+    public void Impact_analyzer_respects_depth_and_relationship_limits()
+    {
+        var source = Entity(DigitalTwinEntityType.Application, "application:root");
+        var affected = Enumerable.Range(0, 80)
+            .Select(index => Entity(DigitalTwinEntityType.Service, $"service:{index:D3}"))
+            .ToArray();
+        var relationships = affected
+            .Select((entity, index) => Relationship(source, entity, DigitalTwinRelationshipType.DependsOn))
+            .ToArray();
+        var snapshot = Snapshot([source, .. affected], relationships);
+
+        var impact = new DigitalTwinImpactAnalyzer().Analyze(
+            snapshot,
+            source.Id,
+            maximumDepth: 2,
+            maximumNodes: 10,
+            maximumRelationships: 5);
+
+        Assert.True(impact.WasTruncated);
+        Assert.True(impact.DirectlyAffected.Count <= 5);
+        Assert.True(impact.TotalImpactedEntities <= 10 + 5);
+    }
+
+    [Fact]
     public void Change_detector_reports_missing_entities_as_not_observed_and_tracks_persistence()
     {
         var oldEntity = Entity(DigitalTwinEntityType.Service, "service:old");
@@ -286,15 +336,16 @@ public sealed class DigitalTwinTests
 
     private static DigitalTwinRelationship Relationship(
         DigitalTwinEntity source,
-        DigitalTwinEntity target) =>
+        DigitalTwinEntity target,
+        DigitalTwinRelationshipType type = DigitalTwinRelationshipType.DependsOn) =>
         new(
             source.Type,
             source.IdentityKey,
             target.Type,
             target.IdentityKey,
-            DigitalTwinRelationshipType.DependsOn,
+            type,
             "Synthetic relationship evidence",
-            $"{source.IdentityKey} depends on {target.IdentityKey}.",
+            $"{source.IdentityKey} {type} {target.IdentityKey}.",
             0.9m,
             true,
             DateTimeOffset.UtcNow);

@@ -1,0 +1,10 @@
+﻿WinForge Release Summary
+=======================
+Product: WinForge
+Version: 0.9.0
+Configuration: Release
+Runtime: win-x64
+Self-contained: false
+Output directory: artifacts/release/WinForge-0.9.0-win-x64
+This bundle is intended for local-first, read-only Windows evaluation and is not an installer or privileged deployment package.
+It does not install services, modify registry settings, or execute privileged remediation flows.

@@ -60,6 +60,9 @@ public sealed class DigitalTwinViewModel : ViewModelBase
         ShowDependenciesCommand = new RelayCommand(
             ShowDependencies,
             () => !IsBusy && _currentSnapshot is not null && SelectedEntity is not null);
+        AnalyzeImpactCommand = new RelayCommand(
+            AnalyzeImpact,
+            () => !IsBusy && _currentSnapshot is not null && SelectedEntity is not null);
         PreviousPageCommand = new RelayCommand(
             () => ChangePage(_pageIndex - 1),
             () => !IsBusy && _pageIndex > 0);
@@ -85,6 +88,8 @@ public sealed class DigitalTwinViewModel : ViewModelBase
     public AsyncRelayCommand CompareSnapshotsCommand { get; }
 
     public RelayCommand ShowDependenciesCommand { get; }
+
+    public RelayCommand AnalyzeImpactCommand { get; }
 
     public RelayCommand PreviousPageCommand { get; }
 
@@ -520,6 +525,59 @@ public sealed class DigitalTwinViewModel : ViewModelBase
         }
     }
 
+    private void AnalyzeImpact()
+    {
+        if (_currentSnapshot is null || SelectedEntity is null)
+        {
+            return;
+        }
+
+        var impact = _digitalTwinService.AnalyzeImpact(_currentSnapshot, SelectedEntity.Id, 3, 50, 150);
+        var text = new StringBuilder()
+            .AppendLine($"Impact assessment for {SelectedEntity.DisplayName} ({SelectedEntity.Type})")
+            .AppendLine($"Summary: {impact.Summary}")
+            .AppendLine();
+
+        if (impact.DirectlyAffected.Count > 0)
+        {
+            text.AppendLine("Directly affected:");
+            foreach (var record in impact.DirectlyAffected)
+            {
+                text.AppendLine(
+                    $"- {record.Entity.Type}: {record.Entity.DisplayName} ({record.Entity.Id}) [{record.Confidence:P0}; {record.RelationshipType}] {record.Reason}");
+            }
+
+            text.AppendLine();
+        }
+        else
+        {
+            text.AppendLine("Directly affected: none within the currently observed relationship graph.");
+            text.AppendLine();
+        }
+
+        if (impact.IndirectlyAffected.Count > 0)
+        {
+            text.AppendLine("Indirectly affected:");
+            foreach (var record in impact.IndirectlyAffected)
+            {
+                text.AppendLine(
+                    $"- {record.Entity.Type}: {record.Entity.DisplayName} ({record.Entity.Id}) [{record.Confidence:P0}; {record.RelationshipType}; depth {record.Distance}] {record.Reason}");
+            }
+        }
+        else
+        {
+            text.AppendLine("Indirectly affected: none in the traversed graph.");
+        }
+
+        if (impact.WasTruncated)
+        {
+            text.AppendLine();
+            text.AppendLine("Impact traversal was capped; the results are directional and informational, not proof of causation.");
+        }
+
+        DetailsText = text.ToString().TrimEnd();
+    }
+
     private void UpdateSelectedDetails()
     {
         if (SelectedEntity is null || _currentSnapshot is null)
@@ -581,6 +639,7 @@ public sealed class DigitalTwinViewModel : ViewModelBase
         LoadSnapshotCommand.NotifyCanExecuteChanged();
         CompareSnapshotsCommand.NotifyCanExecuteChanged();
         ShowDependenciesCommand.NotifyCanExecuteChanged();
+        AnalyzeImpactCommand.NotifyCanExecuteChanged();
         PreviousPageCommand.NotifyCanExecuteChanged();
         NextPageCommand.NotifyCanExecuteChanged();
     }

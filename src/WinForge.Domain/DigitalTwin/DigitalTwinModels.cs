@@ -31,6 +31,12 @@ public enum DigitalTwinRelationshipType
     RepresentsDevice
 }
 
+public enum DigitalTwinImpactLevel
+{
+    Direct,
+    Indirect
+}
+
 public enum DigitalTwinChangeType
 {
     Added,
@@ -79,6 +85,23 @@ public sealed record DigitalTwinRelationship(
 
     public string TargetId => DigitalTwinIdentity.CreateId(TargetType, TargetIdentity);
 }
+
+public sealed record DigitalTwinImpactRecord(
+    DigitalTwinEntity Entity,
+    DigitalTwinImpactLevel Level,
+    int Distance,
+    DigitalTwinRelationshipType RelationshipType,
+    string Reason,
+    decimal Confidence,
+    IReadOnlyList<string> Path);
+
+public sealed record DigitalTwinImpactAnalysis(
+    DigitalTwinEntity? SourceEntity,
+    IReadOnlyList<DigitalTwinImpactRecord> DirectlyAffected,
+    IReadOnlyList<DigitalTwinImpactRecord> IndirectlyAffected,
+    string Summary,
+    bool WasTruncated,
+    int TotalImpactedEntities);
 
 public sealed record DigitalTwinSnapshot(
     Guid SnapshotId,

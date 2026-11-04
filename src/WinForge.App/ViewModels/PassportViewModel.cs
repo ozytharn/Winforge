@@ -1,6 +1,8 @@
 using System.Collections.ObjectModel;
 using Microsoft.Extensions.Logging;
 using WinForge.App.Commands;
+using WinForge.Application.Diagnostics;
+using WinForge.Application.Identity;
 using WinForge.Application.Inventory;
 using WinForge.Domain.Inventory;
 
@@ -9,6 +11,9 @@ namespace WinForge.App.ViewModels;
 public sealed class PassportViewModel : ViewModelBase
 {
     private readonly IPassportScanService _scanService;
+    private readonly SoftwareIdentityAssessmentService _identityService;
+    private readonly SystemHealthAssessmentService _systemHealthAssessmentService;
+    private readonly SecurityPrivacyAssessmentService _securityPrivacyAssessmentService;
     private readonly ILogger<PassportViewModel> _logger;
     private readonly SemaphoreSlim _initializationLock = new(1, 1);
     private CancellationTokenSource? _scanCancellation;
@@ -21,16 +26,26 @@ public sealed class PassportViewModel : ViewModelBase
     private string _progressMessage = "No scan is running.";
     private string _errorMessage = string.Empty;
     private string _footerText = "No inventory records.";
+    private string _softwareIdentitySummary = "Software identity analysis is not available yet.";
+    private string _systemHealthSummary = "System health analysis is not available yet.";
+    private string _securityPrivacySummary = "Security and privacy assessment is not available yet.";
     private string _selectedCategory = "All categories";
     private InventoryScanGroup _selectedScanGroup = InventoryScanGroup.All;
     private string _searchText = string.Empty;
     private PassportComponentViewModel? _selectedComponent;
+    private SecurityPrivacyFinding? _selectedSecurityFinding;
 
     public PassportViewModel(
         IPassportScanService scanService,
+        SoftwareIdentityAssessmentService identityService,
+        SystemHealthAssessmentService systemHealthAssessmentService,
+        SecurityPrivacyAssessmentService securityPrivacyAssessmentService,
         ILogger<PassportViewModel> logger)
     {
         _scanService = scanService;
+        _identityService = identityService;
+        _systemHealthAssessmentService = systemHealthAssessmentService;
+        _securityPrivacyAssessmentService = securityPrivacyAssessmentService;
         _logger = logger;
         ScanCommand = new AsyncRelayCommand(
             RunScanAsync,
@@ -44,6 +59,8 @@ public sealed class PassportViewModel : ViewModelBase
     public ObservableCollection<PassportComponentViewModel> Components { get; } = [];
 
     public ObservableCollection<PassportComponentViewModel> FilteredComponents { get; } = [];
+
+    public ObservableCollection<SecurityPrivacyFinding> SecurityPrivacyFindings { get; } = [];
 
     public ObservableCollection<string> Categories { get; } = ["All categories"];
 
@@ -129,6 +146,24 @@ public sealed class PassportViewModel : ViewModelBase
         private set => SetProperty(ref _footerText, value);
     }
 
+    public string SoftwareIdentitySummary
+    {
+        get => _softwareIdentitySummary;
+        private set => SetProperty(ref _softwareIdentitySummary, value);
+    }
+
+    public string SystemHealthSummary
+    {
+        get => _systemHealthSummary;
+        private set => SetProperty(ref _systemHealthSummary, value);
+    }
+
+    public string SecurityPrivacySummary
+    {
+        get => _securityPrivacySummary;
+        private set => SetProperty(ref _securityPrivacySummary, value);
+    }
+
     public string SelectedCategory
     {
         get => _selectedCategory;
@@ -178,6 +213,23 @@ public sealed class PassportViewModel : ViewModelBase
     }
 
     public string SelectedDetails => SelectedComponent?.DetailsText ?? "Select a component to inspect its collected fields.";
+
+    public SecurityPrivacyFinding? SelectedSecurityFinding
+    {
+        get => _selectedSecurityFinding;
+        set
+        {
+            if (SetProperty(ref _selectedSecurityFinding, value))
+            {
+                OnPropertyChanged(nameof(SelectedSecurityFindingDetails));
+            }
+        }
+    }
+
+    public string SelectedSecurityFindingDetails =>
+        SelectedSecurityFinding is null
+            ? "Select a security or privacy finding to inspect its evidence, limitations, and suggested next steps."
+            : SecurityPrivacyAssessmentService.BuildFindingDetails(SelectedSecurityFinding);
 
     public async Task InitializeAsync()
     {
@@ -338,6 +390,20 @@ public sealed class PassportViewModel : ViewModelBase
         OnPropertyChanged(nameof(IsInventoryEmpty));
         OnPropertyChanged(nameof(EmptyStateTitle));
         FooterText = $"{FilteredComponents.Count:N0} of {Components.Count:N0} component observations shown.";
+        SoftwareIdentitySummary = _identityService.BuildSummary(_identityService.Analyze(snapshot));
+        var healthAssessment = _systemHealthAssessmentService.Analyze(snapshot.Components);
+        var securityAssessment = _securityPrivacyAssessmentService.Analyze(snapshot.Components);
+        SystemHealthSummary = $"{_systemHealthAssessmentService.BuildSummary(healthAssessment)}; Security: {securityAssessment.Summary}";
+        SecurityPrivacySummary = securityAssessment.Summary;
+        SecurityPrivacyFindings.Clear();
+        foreach (var finding in securityAssessment.Findings.OrderBy(finding => finding.Category, StringComparer.OrdinalIgnoreCase))
+        {
+            SecurityPrivacyFindings.Add(finding);
+        }
+        if (SecurityPrivacyFindings.Count > 0 && SelectedSecurityFinding is null)
+        {
+            SelectedSecurityFinding = SecurityPrivacyFindings[0];
+        }
 
         if (snapshot.LatestScan is not { } latest)
         {

@@ -1,0 +1,10 @@
+﻿{
+    "product":  "WinForge",
+    "version":  "0.9.0",
+    "runtime":  "win-x64",
+    "selfContained":  false,
+    "installInstructions":  "Run Install-WinForge.ps1 with the package path to install or upgrade WinForge without altering system settings.",
+    "appDataDirectory":  "%LOCALAPPDATA%\\\\WinForge",
+    "preserveUserDataOnUninstall":  true,
+    "requiresElevation":  false
+}

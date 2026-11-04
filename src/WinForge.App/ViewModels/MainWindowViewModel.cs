@@ -74,7 +74,9 @@ public sealed class MainWindowViewModel : ViewModelBase
 
     public string PassportSummary =>
         $"{Passport.LatestScanStatus}; last successful scan: {Passport.LastSuccessfulScanText}; " +
-        $"{Passport.Components.Count:N0} retained component observations.";
+        $"{Passport.Components.Count:N0} retained component observations; {Passport.SoftwareIdentitySummary}; {Passport.SystemHealthSummary}; {Passport.SecurityPrivacySummary}.";
+
+    public string SecuritySummary => Passport.SecurityPrivacySummary;
 
     public string RecoverySummary =>
         $"{Recovery.AssessmentSummaryText} {Recovery.LastObservedText}";
@@ -165,6 +167,7 @@ public sealed class MainWindowViewModel : ViewModelBase
         OnPropertyChanged(nameof(DigitalTwinSummary));
         OnPropertyChanged(nameof(ActionBrokerSummary));
         OnPropertyChanged(nameof(GuardianSummary));
+        OnPropertyChanged(nameof(SecuritySummary));
         OnPropertyChanged(nameof(TimestampSummary));
         OnPropertyChanged(nameof(WarningsSummary));
     }

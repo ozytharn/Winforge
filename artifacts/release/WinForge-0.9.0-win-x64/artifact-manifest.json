@@ -1,0 +1,242 @@
+﻿{
+    "product":  "WinForge",
+    "version":  "0.9.0",
+    "configuration":  "Release",
+    "runtime":  "win-x64",
+    "selfContained":  false,
+    "generatedAtUtc":  "2026-11-04T18:43:04.9625308+05:30",
+    "summary":  [
+                    "WinForge Release Summary",
+                    "=======================",
+                    "Product: WinForge",
+                    "Version: 0.9.0",
+                    "Configuration: Release",
+                    "Runtime: win-x64",
+                    "Self-contained: false",
+                    "Output directory: artifacts/release/WinForge-0.9.0-win-x64",
+                    "This bundle is intended for local-first, read-only Windows evaluation and is not an installer or privileged deployment package.",
+                    "It does not install services, modify registry settings, or execute privileged remediation flows."
+                ],
+    "files":  [
+                  {
+                      "path":  "e_sqlite3.dll",
+                      "sizeBytes":  1978880,
+                      "sha256":  "B7385D722C83FB52142A00477A726723745916D22A555711EE89834C1111FB2E"
+                  },
+                  {
+                      "path":  "INSTALLER_MANIFEST.json",
+                      "sizeBytes":  398,
+                      "sha256":  "B2DB642B98DD655DFA4F05B22F46E5D440E726BDFEA144B77BDC93BF844E7B95"
+                  },
+                  {
+                      "path":  "Install-WinForge.ps1",
+                      "sizeBytes":  3515,
+                      "sha256":  "84B0515B275BD2363BF45F6414375095A5BA2A5DF861B8857C0E01B45C6193E1"
+                  },
+                  {
+                      "path":  "Microsoft.Data.Sqlite.dll",
+                      "sizeBytes":  177464,
+                      "sha256":  "5A0627964721A7ACDF5D242FA59DB4E8452305D23789DD30C5D03227A370518B"
+                  },
+                  {
+                      "path":  "Microsoft.Extensions.Configuration.Abstractions.dll",
+                      "sizeBytes":  28496,
+                      "sha256":  "7F6C40319B264B18060C1216FA02E3665AC486810A3C8D3133A23C9164CD7544"
+                  },
+                  {
+                      "path":  "Microsoft.Extensions.Configuration.Binder.dll",
+                      "sizeBytes":  43344,
+                      "sha256":  "AF2C49E574EDA5AC57F822691115BE6EFC3E41AC138938D7D192A24F72A84B5D"
+                  },
+                  {
+                      "path":  "Microsoft.Extensions.Configuration.CommandLine.dll",
+                      "sizeBytes":  25384,
+                      "sha256":  "E872FF645F0804C8A162C42E03FEA23388A89CEA6684138F050CC7A62A4F2CB9"
+                  },
+                  {
+                      "path":  "Microsoft.Extensions.Configuration.dll",
+                      "sizeBytes":  44880,
+                      "sha256":  "A725409E8645836161661DC584BA2E825F38F8C0FCED35B0A8CB2F362050CB3B"
+                  },
+                  {
+                      "path":  "Microsoft.Extensions.Configuration.EnvironmentVariables.dll",
+                      "sizeBytes":  21800,
+                      "sha256":  "7A0B77736D19A2E5398E951C2222B6028C5FF50376832608BF8F0A66F6DD96A7"
+                  },
+                  {
+                      "path":  "Microsoft.Extensions.Configuration.FileExtensions.dll",
+                      "sizeBytes":  28456,
+                      "sha256":  "011B49BB5892810DF1FDE3FF227CEA45DF8C9ABE7443C433AFD0B30DDB901F3F"
+                  },
+                  {
+                      "path":  "Microsoft.Extensions.Configuration.Json.dll",
+                      "sizeBytes":  27944,
+                      "sha256":  "D642F189228B56D45A01808C061D42CE66EE03B12AA60115188D277CEF5F2CC0"
+                  },
+                  {
+                      "path":  "Microsoft.Extensions.Configuration.UserSecrets.dll",
+                      "sizeBytes":  26448,
+                      "sha256":  "77151F4DBEAF50EFE3613E51DACB939AA9FAC549556705ACC2A64018D26B7997"
+                  },
+                  {
+                      "path":  "Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+                      "sizeBytes":  65832,
+                      "sha256":  "6674A200AE49EE36AF214CFAEF4A511674D0A17828482E0F3EB5F1C21C241C75"
+                  },
+                  {
+                      "path":  "Microsoft.Extensions.DependencyInjection.dll",
+                      "sizeBytes":  95528,
+                      "sha256":  "913F764318B64E6167E2BE5554496DB490ADF0D0E2D0BCAB7E8BF69BFA8562C6"
+                  },
+                  {
+                      "path":  "Microsoft.Extensions.Diagnostics.Abstractions.dll",
+                      "sizeBytes":  31016,
+                      "sha256":  "13C0468501CA0EFDB2ADE8685FE4E77379FAEBD6778D82F6FB761B4B84052EEB"
+                  },
+                  {
+                      "path":  "Microsoft.Extensions.Diagnostics.dll",
+                      "sizeBytes":  36136,
+                      "sha256":  "518AE085CBF9ED498A83E942EF859FA05E2121222761FE4C422F612C7CA24FAC"
+                  },
+                  {
+                      "path":  "Microsoft.Extensions.FileProviders.Abstractions.dll",
+                      "sizeBytes":  23336,
+                      "sha256":  "817D6C1513EC67F84980AA4FA520830E1B088906FC904E1D1B5D18E8B809EE63"
+                  },
+                  {
+                      "path":  "Microsoft.Extensions.FileProviders.Physical.dll",
+                      "sizeBytes":  45352,
+                      "sha256":  "29F95EF485B1C54613300821EA6AC2ACE033795BA7F48A0F22905C56B1117714"
+                  },
+                  {
+                      "path":  "Microsoft.Extensions.FileSystemGlobbing.dll",
+                      "sizeBytes":  47952,
+                      "sha256":  "FBAEEF3E8988C18BED5FEE14179FA983233F8504F73E27156BE4EA7146B96A75"
+                  },
+                  {
+                      "path":  "Microsoft.Extensions.Hosting.Abstractions.dll",
+                      "sizeBytes":  54056,
+                      "sha256":  "8808515CFD675A49D1ED1FC29C00CDB935445BB973A5F9F5DCBB2C29797099E6"
+                  },
+                  {
+                      "path":  "Microsoft.Extensions.Hosting.dll",
+                      "sizeBytes":  71976,
+                      "sha256":  "823C35D93B69DD36CAA58F6A1B295BDCD5C940C7B5C6CA56566DC2033B3E51F0"
+                  },
+                  {
+                      "path":  "Microsoft.Extensions.Logging.Abstractions.dll",
+                      "sizeBytes":  66896,
+                      "sha256":  "1E28C2090E866EF94BF05C57A7EC934604AB1B69DC080E9AF52D18284D6368ED"
+                  },
+                  {
+                      "path":  "Microsoft.Extensions.Logging.Configuration.dll",
+                      "sizeBytes":  28496,
+                      "sha256":  "A9C88A84D0D988D1A07A2F9FB121D4DAE23074DBDA0C35DE662B9D9905E56D9D"
+                  },
+                  {
+                      "path":  "Microsoft.Extensions.Logging.Console.dll",
+                      "sizeBytes":  76072,
+                      "sha256":  "87CFB75E9D0561980043E29CD3400336F73EDA4806244F0A8FA74D6A8118F474"
+                  },
+                  {
+                      "path":  "Microsoft.Extensions.Logging.Debug.dll",
+                      "sizeBytes":  19752,
+                      "sha256":  "B2F95D2F0414E467B353D0E0AEBD43763B88564FDDED74EA84328FFA20E0FA20"
+                  },
+                  {
+                      "path":  "Microsoft.Extensions.Logging.dll",
+                      "sizeBytes":  51536,
+                      "sha256":  "845B9B3D9162628A3C9C6E3A62797AD6BC44D015E1482A614662A89E2B15236D"
+                  },
+                  {
+                      "path":  "Microsoft.Extensions.Logging.EventLog.dll",
+                      "sizeBytes":  24872,
+                      "sha256":  "613D2B02FEAC51FB45D877CD925448194C04C646DC290C5C6F7AF929A81D89EE"
+                  },
+                  {
+                      "path":  "Microsoft.Extensions.Logging.EventSource.dll",
+                      "sizeBytes":  34600,
+                      "sha256":  "2B971EE034A405AF2DA115AB5C1E5D4395C2C91BDD49DC88C8D28C1523A3AE0A"
+                  },
+                  {
+                      "path":  "Microsoft.Extensions.Options.ConfigurationExtensions.dll",
+                      "sizeBytes":  21840,
+                      "sha256":  "EC9DDFAA5E87B05F938F09B27A9A93A70A0BFCF0053A68300C526A7950FD8F97"
+                  },
+                  {
+                      "path":  "Microsoft.Extensions.Options.dll",
+                      "sizeBytes":  65360,
+                      "sha256":  "24C2020F9A864E8FBAC14CA31C7728A5A04602FA68F9C96B8846F54A767C6D04"
+                  },
+                  {
+                      "path":  "Microsoft.Extensions.Primitives.dll",
+                      "sizeBytes":  44840,
+                      "sha256":  "24E9693A50422334E826E9E0B2A693ED6006E3D63DE5B3A9B60DAE753130E105"
+                  },
+                  {
+                      "path":  "README.txt",
+                      "sizeBytes":  1058,
+                      "sha256":  "BB496375079D4678CE807B0DEA881DAB02E3351984F1B3430C0D3D2059A784E0"
+                  },
+                  {
+                      "path":  "SQLitePCLRaw.batteries_v2.dll",
+                      "sizeBytes":  5120,
+                      "sha256":  "BC69777001EB4DB81C580F62835396F67E74AAA381EEF446193A904499D5310B"
+                  },
+                  {
+                      "path":  "SQLitePCLRaw.core.dll",
+                      "sizeBytes":  51200,
+                      "sha256":  "50C999A1AB2AFEACC93BCE5AC2948D3BB630D99D23EFC3CFCBD8BC11D3426EB7"
+                  },
+                  {
+                      "path":  "SQLitePCLRaw.provider.e_sqlite3.dll",
+                      "sizeBytes":  36864,
+                      "sha256":  "369EA2A63067CA06328774191E0E6DC604AEC8621D09B7F7C283FBBCAF533265"
+                  },
+                  {
+                      "path":  "System.Management.dll",
+                      "sizeBytes":  314152,
+                      "sha256":  "45005DFE94F1105848860366414164084D4DE0A3075BD97888FE1DF6BE5BDFA7"
+                  },
+                  {
+                      "path":  "Uninstall-WinForge.ps1",
+                      "sizeBytes":  1246,
+                      "sha256":  "41DA274F0B0593EC29CA6596CBE56403DA72D3CF2C8FC8D98843407FD918214D"
+                  },
+                  {
+                      "path":  "WinForge.App.deps.json",
+                      "sizeBytes":  31818,
+                      "sha256":  "735DD302DAC75E06AFBA77E1FFBC678EDC41AB8AE5FAC43625B2FE76F0FE6B3C"
+                  },
+                  {
+                      "path":  "WinForge.App.dll",
+                      "sizeBytes":  218112,
+                      "sha256":  "0865AFC8F7F4BD50BC14CA3B84A4DBAD42BF739A3CA5E426DEE773BFB40D3DE7"
+                  },
+                  {
+                      "path":  "WinForge.App.exe",
+                      "sizeBytes":  162304,
+                      "sha256":  "A8144C767FBD49B9758708E9A51242DBFCC5B78AF9A036991D0FB11C112322FE"
+                  },
+                  {
+                      "path":  "WinForge.App.runtimeconfig.json",
+                      "sizeBytes":  519,
+                      "sha256":  "96BC2946DFF8790400D652EC7F8DE7BB043E954980D59470C112788B68A1FBD3"
+                  },
+                  {
+                      "path":  "WinForge.Application.dll",
+                      "sizeBytes":  285184,
+                      "sha256":  "892A4FC40779EF4547775540F4399518230AFF7AD91D395FC7C9E4164F44C385"
+                  },
+                  {
+                      "path":  "WinForge.Domain.dll",
+                      "sizeBytes":  155648,
+                      "sha256":  "6C9C03CFFE90313979EC9E9E7C626C88B9CB6BFB15946EBBF89056202319F436"
+                  },
+                  {
+                      "path":  "WinForge.Infrastructure.dll",
+                      "sizeBytes":  322048,
+                      "sha256":  "2C162EFC0FBE1209C6678E3AAD86159C5B9BA01CA2AF3F0DE860FDC0892B5227"
+                  }
+              ]
+}

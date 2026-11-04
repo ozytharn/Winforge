@@ -88,8 +88,8 @@
            <Button DockPanel.Dock="Right" Margin="12,0,0,0" Padding="12,6"
                    VerticalAlignment="Top" Command="{Binding NavigateGuardianCommand}" Content="Open Guardian" />
            <StackPanel>
-            <TextBlock FontSize="11" FontWeight="SemiBold" Foreground="#68788D" Text="GUARDIAN OBSERVATIONS" />
-            <TextBlock Margin="0,8,0,0" Foreground="#172B4D" TextWrapping="Wrap" Text="{Binding GuardianSummary}" />
+            <TextBlock FontSize="11" FontWeight="SemiBold" Foreground="#68788D" Text="SECURITY &amp; PRIVACY" />
+            <TextBlock Margin="0,8,0,0" Foreground="#172B4D" TextWrapping="Wrap" Text="{Binding SecuritySummary}" />
            </StackPanel>
           </DockPanel>
          </Border>
@@ -117,6 +117,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
@@ -227,7 +228,59 @@
             </StackPanel>
         </Grid>
 
-        <DockPanel Grid.Row="5" Margin="0,12,0,0">
+        <Border Grid.Row="5" Margin="0,12,0,0" Padding="12" Background="White"
+                BorderBrush="#E1E7EF" BorderThickness="1" CornerRadius="8">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.ColumnSpan="2" FontSize="11" FontWeight="SemiBold" Foreground="#68788D"
+                           Text="SECURITY &amp; PRIVACY" />
+                <TextBlock Grid.Row="1" Margin="0,8,12,0" Foreground="#172B4D" TextWrapping="Wrap"
+                           Text="{Binding SecurityPrivacySummary}" />
+                <Grid Grid.Row="1" Grid.Column="1" Margin="0,8,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="3*" />
+                    </Grid.ColumnDefinitions>
+                    <DataGrid ItemsSource="{Binding SecurityPrivacyFindings}"
+                              SelectedItem="{Binding SelectedSecurityFinding, Mode=TwoWay}"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              CanUserAddRows="False"
+                              CanUserDeleteRows="False"
+                              GridLinesVisibility="Horizontal"
+                              HeadersVisibility="Column"
+                              Background="White"
+                              BorderBrush="#E1E7EF"
+                              RowBackground="White"
+                              AlternatingRowBackground="#F8FAFC"
+                              SelectionMode="Single">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Category" Binding="{Binding Category}" Width="120" />
+                            <DataGridTextColumn Header="State" Binding="{Binding State}" Width="95" />
+                            <DataGridTextColumn Header="Severity" Binding="{Binding Severity}" Width="105" />
+                            <DataGridTextColumn Header="Confidence" Binding="{Binding Confidence, StringFormat=P0}" Width="90" />
+                            <DataGridTextColumn Header="Finding" Binding="{Binding Message}" Width="2*" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Border Grid.Column="1" Margin="10,0,0,0" Padding="10" Background="#F8FAFC"
+                            BorderBrush="#E1E7EF" BorderThickness="1" CornerRadius="6">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <TextBlock Foreground="#344563" TextWrapping="Wrap"
+                                       Text="{Binding SelectedSecurityFindingDetails}" />
+                        </ScrollViewer>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Border>
+
+        <DockPanel Grid.Row="6" Margin="0,12,0,0">
             <TextBlock Foreground="#53657D" Text="{Binding FooterText}" />
             <TextBlock DockPanel.Dock="Right" Foreground="#68788D" Text="WinForge inventory is stored locally." />
         </DockPanel>
