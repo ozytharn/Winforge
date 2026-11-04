@@ -1,0 +1,16 @@
+C:\Users\Abhinav Kumar\Desktop\projects\winforge\src\WinForge.Application\bin\Debug\net10.0\WinForge.Application.deps.json
+C:\Users\Abhinav Kumar\Desktop\projects\winforge\src\WinForge.Application\bin\Debug\net10.0\WinForge.Application.dll
+C:\Users\Abhinav Kumar\Desktop\projects\winforge\src\WinForge.Application\bin\Debug\net10.0\WinForge.Application.pdb
+C:\Users\Abhinav Kumar\Desktop\projects\winforge\src\WinForge.Application\bin\Debug\net10.0\WinForge.Domain.dll
+C:\Users\Abhinav Kumar\Desktop\projects\winforge\src\WinForge.Application\bin\Debug\net10.0\WinForge.Domain.pdb
+C:\Users\Abhinav Kumar\Desktop\projects\winforge\src\WinForge.Application\obj\Debug\net10.0\WinForge.Application.csproj.AssemblyReference.cache
+C:\Users\Abhinav Kumar\Desktop\projects\winforge\src\WinForge.Application\obj\Debug\net10.0\WinForge.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Abhinav Kumar\Desktop\projects\winforge\src\WinForge.Application\obj\Debug\net10.0\WinForge.Application.AssemblyInfoInputs.cache
+C:\Users\Abhinav Kumar\Desktop\projects\winforge\src\WinForge.Application\obj\Debug\net10.0\WinForge.Application.AssemblyInfo.cs
+C:\Users\Abhinav Kumar\Desktop\projects\winforge\src\WinForge.Application\obj\Debug\net10.0\WinForge.Application.csproj.CoreCompileInputs.cache
+C:\Users\Abhinav Kumar\Desktop\projects\winforge\src\WinForge.Application\obj\Debug\net10.0\WinForge.6553797E.Up2Date
+C:\Users\Abhinav Kumar\Desktop\projects\winforge\src\WinForge.Application\obj\Debug\net10.0\WinForge.Application.dll
+C:\Users\Abhinav Kumar\Desktop\projects\winforge\src\WinForge.Application\obj\Debug\net10.0\refint\WinForge.Application.dll
+C:\Users\Abhinav Kumar\Desktop\projects\winforge\src\WinForge.Application\obj\Debug\net10.0\WinForge.Application.pdb
+C:\Users\Abhinav Kumar\Desktop\projects\winforge\src\WinForge.Application\obj\Debug\net10.0\ref\WinForge.Application.dll
+C:\Users\Abhinav Kumar\Desktop\projects\winforge\src\WinForge.Application\obj\Debug\net10.0\WinForge.Application.sourcelink.json

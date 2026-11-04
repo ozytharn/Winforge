@@ -1,0 +1,12 @@
+C:\Users\Abhinav Kumar\Desktop\projects\winforge\src\WinForge.Domain\bin\Release\net10.0\WinForge.Domain.deps.json
+C:\Users\Abhinav Kumar\Desktop\projects\winforge\src\WinForge.Domain\bin\Release\net10.0\WinForge.Domain.dll
+C:\Users\Abhinav Kumar\Desktop\projects\winforge\src\WinForge.Domain\bin\Release\net10.0\WinForge.Domain.pdb
+C:\Users\Abhinav Kumar\Desktop\projects\winforge\src\WinForge.Domain\obj\Release\net10.0\WinForge.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Abhinav Kumar\Desktop\projects\winforge\src\WinForge.Domain\obj\Release\net10.0\WinForge.Domain.AssemblyInfoInputs.cache
+C:\Users\Abhinav Kumar\Desktop\projects\winforge\src\WinForge.Domain\obj\Release\net10.0\WinForge.Domain.AssemblyInfo.cs
+C:\Users\Abhinav Kumar\Desktop\projects\winforge\src\WinForge.Domain\obj\Release\net10.0\WinForge.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Abhinav Kumar\Desktop\projects\winforge\src\WinForge.Domain\obj\Release\net10.0\WinForge.Domain.dll
+C:\Users\Abhinav Kumar\Desktop\projects\winforge\src\WinForge.Domain\obj\Release\net10.0\refint\WinForge.Domain.dll
+C:\Users\Abhinav Kumar\Desktop\projects\winforge\src\WinForge.Domain\obj\Release\net10.0\WinForge.Domain.pdb
+C:\Users\Abhinav Kumar\Desktop\projects\winforge\src\WinForge.Domain\obj\Release\net10.0\ref\WinForge.Domain.dll
+C:\Users\Abhinav Kumar\Desktop\projects\winforge\src\WinForge.Domain\obj\Release\net10.0\WinForge.Domain.sourcelink.json

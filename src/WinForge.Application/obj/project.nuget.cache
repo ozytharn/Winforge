@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "q6DzFicBtGw=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Abhinav Kumar\\Desktop\\projects\\winforge\\src\\WinForge.Application\\WinForge.Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Abhinav Kumar\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\10.0.14\\microsoft.extensions.dependencyinjection.abstractions.10.0.14.nupkg.sha512",
+    "C:\\Users\\Abhinav Kumar\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\10.0.14\\microsoft.extensions.logging.abstractions.10.0.14.nupkg.sha512"
+  ],
+  "logs": []
+}

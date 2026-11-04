@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "WinForge.Domain/0.9.0": {
+        "runtime": {
+          "WinForge.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "WinForge.Domain/0.9.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
